@@ -31,7 +31,7 @@ class TokenController {
       const token = jwt.sign(
         {
           id: user.id,
-          email,
+          email: user.email,
         },
         process.env.TOKEN_SECRET,
         {

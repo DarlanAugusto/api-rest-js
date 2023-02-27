@@ -2,6 +2,8 @@ import User from '../models/User';
 
 class UserController {
   async index(req, res) {
+    console.log(req.userId, req.userEmail);
+
     try {
       const users = await User.findAll();
       return res.json({ users });
