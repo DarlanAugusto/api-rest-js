@@ -4,10 +4,11 @@ import loginRequired from '../middlewares/loginRequired';
 
 const router = new Router();
 
-router.get('/', loginRequired, UserController.index);
-router.get('/:userId', UserController.show);
-router.post('/store', loginRequired, UserController.store);
-router.put('/:userId', loginRequired, UserController.update);
-router.delete('/:userId', loginRequired, UserController.delete);
+// router.get('/', loginRequired, UserController.index);
+
+router.post('/store', UserController.store);
+router.get('/', loginRequired, UserController.show);
+router.put('/', loginRequired, UserController.update);
+router.delete('/', loginRequired, UserController.delete);
 
 export default router;
