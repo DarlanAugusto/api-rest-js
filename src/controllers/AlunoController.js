@@ -22,6 +22,80 @@ class AlunoController {
       });
     }
   }
+
+  async show(req, res) {
+    try {
+      if (!req.params.alunoId) {
+        return res.status(400).json({
+          errors: ['ID não enviado'],
+        });
+      }
+
+      const aluno = await Aluno.findByPk(req.params.alunoId);
+
+      if (!aluno) {
+        return res.status(400).json({
+          errors: ['Aluno não existe'],
+        });
+      }
+
+      return res.json({ aluno });
+    } catch (error) {
+      return res.status(400).json({
+        errors: error.errors.map((err) => err.message),
+      });
+    }
+  }
+
+  async update(req, res) {
+    try {
+      if (!req.params.alunoId) {
+        return res.status(400).json({
+          errors: ['ID não enviado'],
+        });
+      }
+
+      const aluno = await Aluno.findByPk(req.params.alunoId);
+
+      if (!aluno) {
+        return res.status(400).json({
+          errors: ['Aluno não existe'],
+        });
+      }
+
+      const alunoUpdated = await aluno.update(req.body);
+      return res.json({ aluno: alunoUpdated });
+    } catch (error) {
+      return res.status(400).json({
+        errors: error.errors.map((err) => err.message),
+      });
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      if (!req.params.alunoId) {
+        return res.status(400).json({
+          errors: ['ID não enviado'],
+        });
+      }
+
+      const aluno = await Aluno.findByPk(req.params.alunoId);
+
+      if (!aluno) {
+        return res.status(400).json({
+          errors: ['Aluno não existe'],
+        });
+      }
+
+      const alunoDeleted = await aluno.destroy();
+      return res.json({ aluno: alunoDeleted });
+    } catch (error) {
+      return res.status(400).json({
+        errors: error.errors.map((err) => err.message),
+      });
+    }
+  }
 }
 
 export default new AlunoController();
