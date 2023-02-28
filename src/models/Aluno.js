@@ -16,22 +16,52 @@ export default class Aluno extends Model {
       lastname: {
         type: Sequelize.STRING,
         defaultValue: '',
+        validate: {
+          len: {
+            args: [3, 255],
+            msg: 'O campo sobrenome deve ter entre 3 e 255 caracteres',
+          },
+        },
       },
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
         unique: {
-          msg: 'Já exite um aluno com esse email',
+          msg: 'Já exite um aluno com este email',
         },
         validate: {
           isEmail: {
-            msg: 'Email inválido',
+            msg: 'E-mail inválido',
           },
         },
       },
-      age: Sequelize.INTEGER,
-      weight: Sequelize.FLOAT,
-      height: Sequelize.FLOAT,
+      age: {
+        type: Sequelize.INTEGER,
+        defaultValue: '',
+        validade: {
+          isInt: {
+            msg: 'O campo idade deve ser um número inteiro',
+          },
+        },
+      },
+      weight: {
+        type: Sequelize.FLOAT,
+        defaultValue: '',
+        validate: {
+          isFloat: {
+            msg: 'O campo peso deve ser um valor numérico',
+          },
+        },
+      },
+      height: {
+        type: Sequelize.FLOAT,
+        defaultValue: '',
+        validate: {
+          isFloat: {
+            msg: 'O campo altura deve ser um valor numérico',
+          },
+        },
+      },
     }, {
       sequelize,
     });
