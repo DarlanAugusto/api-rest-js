@@ -1,16 +1,16 @@
 import User from '../models/User';
 
 class UserController {
-  // async index(req, res) {
-  //   console.log(req.userId, req.userEmail);
+  async index(req, res) {
+    console.log(req.userId, req.userEmail);
 
-  //   try {
-  //     const users = await User.findAll({ attributes: ['id', 'name', 'email'] });
-  //     return res.json({ users });
-  //   } catch (error) {
-  //     return res.json(null);
-  //   }
-  // }
+    try {
+      const users = await User.findAll({ attributes: ['id', 'name', 'email'] });
+      return res.json({ users });
+    } catch (error) {
+      return res.json(null);
+    }
+  }
 
   async show(req, res) {
     try {
